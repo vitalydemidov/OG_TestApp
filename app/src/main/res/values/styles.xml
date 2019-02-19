@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    
+    <style name="OG_TabLayoutStyle" parent="Widget.Design.TabLayout">
+        <item name="tabMode">scrollable</item>
+    </style>
+    
+    <!-- List items styles -->
+    <style name="ItemFixtureCompetition">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/item_fixture_text_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="ItemFixtureVenue">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/item_fixture_text_small</item>
+    </style>
+    
+    <style name="ItemFixtureTeam">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">@dimen/item_fixture_text_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingTop">@dimen/item_fixture_padding</item>
+        <item name="android:paddingBottom">@dimen/item_fixture_padding</item>
+    </style>
+
+    <style name="ItemFixtureVerticalDivider">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:layout_width">@dimen/item_fixture_vertical_divider_width</item>
+        <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
+    </style>
+
+    <style name="ItemFixtureDate">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/item_fixture_text_small</item>
+        <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
+    </style>
+
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">OG_TestApp</string>
+
+    <!-- Tabs -->
+    <string name="tab_label_fixtures">Fixtures</string>
+    <string name="tab_label_results">Results</string>
+
+    <string name="fixture_type_upcoming" translatable="false">FixtureUpcoming</string>
+    <string name="fixture_type_final" translatable="false">FixtureFinal</string>
+
+    <string name="toast_message_loading_error">Ошибка при загрузке</string>
+
+</resources>
