@@ -5,7 +5,7 @@ import android.text.Spannable
 class FixtureResultVM(
     val competition: String,
     val venue: String,
-    val dateAndTime: Spannable,
+    val dateAndTime: String,
     val homeTeam: String,
     val awayTeam: String,
     val homeTeamScore: Spannable,

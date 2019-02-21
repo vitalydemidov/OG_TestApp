@@ -46,7 +46,6 @@
     </style>
 
     <style name="ItemFixtureDate">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">@dimen/item_fixture_text_small</item>
         <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
     </style>

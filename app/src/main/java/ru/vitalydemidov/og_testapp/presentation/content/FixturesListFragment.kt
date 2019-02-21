@@ -10,13 +10,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_fixtures_list.view.*
-import ru.vitalydemidov.og_testapp.OG_TestApp
 import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.appcommon.BaseView
-import ru.vitalydemidov.og_testapp.data.model.Fixture
+import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapterJava
+import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
+import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureUpcomingVM
+import ru.vitalydemidov.og_testapp.presentation.host.TabsActivity
 import ru.vitalydemidov.og_testapp.util.FixtureType
 import javax.inject.Inject
 
@@ -26,10 +27,10 @@ class FixturesListFragment :
     FixturesListContract.View {
 
     private var fixturesListComponent: FixturesListComponent? = null
-    private lateinit var adapter: FixturesListAdapter
+    private lateinit var adapter: BaseDelegateAdapterJava<in Nothing>
 
     @Inject
-    internal fun setAdapter(adapter: FixturesListAdapter) {
+    internal fun setAdapter(adapter: BaseDelegateAdapterJava<in Nothing>) {
         this.adapter = adapter
     }
 
@@ -44,7 +45,7 @@ class FixturesListFragment :
             setHasFixedSize(true)
             layoutManager = linearLayoutManager
             addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
-//            recycledViewPool.setMaxRecycledViews()    // задать размер пула, когда будут реализованы типы
+            recycledViewPool.setMaxRecycledViews(R.id.divider_item_id, 3)    // задать размер пула, когда будут реализованы типы
             adapter = this@FixturesListFragment.adapter
         }
 
@@ -74,9 +75,9 @@ class FixturesListFragment :
     //endregion BaseView
 
     //region Contract
-    override fun showFixtureList(fixtures: List<Fixture>) {
+    override fun showFixtureList(fixtures: List<BaseItem<in Nothing>>) {
         Log.d("FixturesListFragment", "fixtures: $fixtures")
-        adapter.dataList = fixtures
+        adapter.setDataList(fixtures)
     }
 
     override fun showError(error: Throwable) {
@@ -104,7 +105,7 @@ class FixturesListFragment :
 
         return DaggerFixturesListComponent.builder()
             .fixtureType(fixtureType)
-            .appComponent((activity?.application as OG_TestApp).appComponent)
+            .tabsActivityComponent((activity as TabsActivity).activityComponent)
             .build()
     }
 

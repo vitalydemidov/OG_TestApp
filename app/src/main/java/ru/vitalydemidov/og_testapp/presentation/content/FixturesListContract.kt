@@ -1,14 +1,14 @@
 package ru.vitalydemidov.og_testapp.presentation.content
 
 import ru.vitalydemidov.og_testapp.appcommon.BaseContract
-import ru.vitalydemidov.og_testapp.data.model.Fixture
+import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.util.FixtureType
 
 interface FixturesListContract {
 
     interface View : BaseContract.View {
 
-        fun showFixtureList(fixtures: List<Fixture>)
+        fun showFixtureList(fixtures: List<BaseItem<in Nothing>>)
 
         fun showError(error: Throwable)
 

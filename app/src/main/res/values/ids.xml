@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Fixtures list items ids -->
+    <item name="fixture_upcoming_item_id" type="id"/>
+    <item name="fixture_final_item_id" type="id"/>
+    <item name="divider_item_id" type="id"/>
+
+</resources>

@@ -1,7 +1,7 @@
 package ru.vitalydemidov.og_testapp.presentation.content
 
 import ru.vitalydemidov.og_testapp.appcommon.BasePresenter
-import ru.vitalydemidov.og_testapp.data.model.Fixture
+import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.domain.FixturesListInteractor
 import ru.vitalydemidov.og_testapp.util.FixtureType
 
@@ -11,7 +11,7 @@ internal class FixturesListPresenter(
 ) : BasePresenter<FixturesListContract.View>(),
     FixturesListContract.Presenter {
 
-    private var dataList: List<Fixture> = arrayListOf()
+    private var dataList: List<BaseItem<in Nothing>> = arrayListOf()
 
     init {
         loadFixtures(type)
@@ -33,7 +33,7 @@ internal class FixturesListPresenter(
         )
     }
 
-    private fun processDataListResult(data: List<Fixture>) {
+    private fun processDataListResult(data: List<BaseItem<in Nothing>>) {
         dataList = data
         view?.showFixtureList(dataList)
     }

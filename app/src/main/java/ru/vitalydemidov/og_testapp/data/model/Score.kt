@@ -1,7 +1,7 @@
 package ru.vitalydemidov.og_testapp.data.model
 
 data class Score(
-    val home: Int,
-    val away: Int,
-    val winner: String
+    val home: String,
+    val away: String,
+    val winner: String?
 )

@@ -5,10 +5,11 @@ import dagger.Component
 import ru.vitalydemidov.og_testapp.di.AppComponent
 import ru.vitalydemidov.og_testapp.presentation.content.FixturesListContract
 import ru.vitalydemidov.og_testapp.presentation.content.FixturesListFragment
+import ru.vitalydemidov.og_testapp.presentation.host.di.TabsActivityComponent
 import ru.vitalydemidov.og_testapp.util.FixtureType
 
 @Component(
-    dependencies = [AppComponent::class],
+    dependencies = [TabsActivityComponent::class],
     modules = [FixturesListModule::class]
 )
 @PerFragmentScope
@@ -24,7 +25,7 @@ interface FixturesListComponent {
         @BindsInstance
         fun fixtureType(type: FixtureType): Builder
 
-        fun appComponent(appComponent: AppComponent): Builder
+        fun tabsActivityComponent(activityComponent: TabsActivityComponent): Builder
 
         fun build(): FixturesListComponent
     }
