@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/item_fixture_padding">
+
+    <include layout="@layout/item_list_fixture_content"/>
+
+    <TextView
+        style="@style/ItemFixtureFinalScore"
+        android:id="@+id/item_fixture_final_home_team_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/item_fixture_upcoming_home_team"
+        app:layout_constraintBottom_toBottomOf="@id/item_fixture_upcoming_home_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="2"/>
+
+    <TextView
+        style="@style/ItemFixtureFinalScore"
+        android:id="@+id/item_fixture_final_away_team_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/item_fixture_upcoming_away_team"
+        app:layout_constraintBottom_toBottomOf="@id/item_fixture_upcoming_away_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="3"/>
+
+</android.support.constraint.ConstraintLayout>

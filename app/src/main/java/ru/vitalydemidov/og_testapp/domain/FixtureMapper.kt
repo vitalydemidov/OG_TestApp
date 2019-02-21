@@ -83,7 +83,7 @@ class FixtureMapper(
             prepareDateAndTime(fixture),
             fixture.homeTeam.name,
             fixture.awayTeam.name,
-            fixture.state,
+            isPostponed(fixture),
             formatDayOfMonth(fixture.date),
             formatDayOfWeek(fixture.date)
         )
@@ -128,7 +128,7 @@ class FixtureMapper(
 
         val spannableString = SpannableString(formattedDateAndTime)
         spannableString.setSpan(
-            ForegroundColorSpan(if (fixture.state.equals("postponed")) datePostponedColor else dateDefaultColor),
+            ForegroundColorSpan(if (isPostponed(fixture)) datePostponedColor else dateDefaultColor),
             0,
             spannableString.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
@@ -167,6 +167,8 @@ class FixtureMapper(
         return calendarForPreviousItem.get(MONTH) == calendarForCurrentItem.get(MONTH) &&
                 calendarForPreviousItem.get(YEAR) == calendarForCurrentItem.get(YEAR)
     }
+
+    private fun isPostponed(fixture: Fixture): Boolean = fixture.state.equals("postponed")
     //endregion Util
 
 }

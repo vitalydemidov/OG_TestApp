@@ -22,19 +22,18 @@
     <style name="ItemFixtureCompetition">
         <item name="android:textColor">@android:color/black</item>
         <item name="android:textSize">@dimen/item_fixture_text_small</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="ItemFixtureVenue">
         <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textSize">@dimen/item_fixture_text_small</item>
+        <item name="android:textSize">@dimen/item_fixture_text_extra_small</item>
+        <item name="android:paddingEnd">@dimen/item_fixture_vertical_divider_margin</item>
     </style>
     
     <style name="ItemFixtureTeam">
         <item name="android:textColor">@color/textColorSecondary</item>
         <item name="android:textSize">@dimen/item_fixture_text_medium</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:paddingTop">@dimen/item_fixture_padding</item>
         <item name="android:paddingBottom">@dimen/item_fixture_padding</item>
     </style>
@@ -42,12 +41,37 @@
     <style name="ItemFixtureVerticalDivider">
         <item name="android:background">@color/colorPrimaryDark</item>
         <item name="android:layout_width">@dimen/item_fixture_vertical_divider_width</item>
-        <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
     </style>
 
     <style name="ItemFixtureDate">
-        <item name="android:textSize">@dimen/item_fixture_text_small</item>
+        <item name="android:textSize">@dimen/item_fixture_text_extra_small</item>
         <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
+    </style>
+
+    <style name="ItemFixtureDayOfMonth">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">@dimen/item_fixture_text_king_size</item>
+    </style>
+
+    <style name="ItemFixtureDayOfWeek">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">@dimen/item_fixture_text_medium</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginStart">@dimen/item_fixture_padding</item>
+    </style>
+
+    <style name="ItemFixturePostponedBanner">
+        <item name="android:background">@color/textColorRed</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/item_fixture_text_extra_small</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:padding">@dimen/item_fixture_postponed_banner_padding</item>
+    </style>
+
+    <style name="ItemFixtureFinalScore">
+        <item name="android:textSize">@dimen/item_fixture_text_extra_large</item>
+        <item name="android:layout_marginEnd">@dimen/item_fixture_padding</item>
     </style>
     
     <style name="DateDividerLabel">

@@ -6,11 +6,15 @@
 
     <!-- List items styles -->
     <dimen name="item_fixture_padding">16dp</dimen>
-    <dimen name="item_fixture_vertical_divider_width">1dp</dimen>
+    <dimen name="item_fixture_vertical_divider_width">0.5dp</dimen>
     <dimen name="item_fixture_vertical_divider_margin">4dp</dimen>
+    <dimen name="item_fixture_postponed_banner_padding">4dp</dimen>
 
+    <dimen name="item_fixture_text_extra_small">12sp</dimen>
     <dimen name="item_fixture_text_small">14sp</dimen>
     <dimen name="item_fixture_text_medium">16sp</dimen>
     <dimen name="item_fixture_text_large">20sp</dimen>
+    <dimen name="item_fixture_text_extra_large">26sp</dimen>
+    <dimen name="item_fixture_text_king_size">30sp</dimen>
 
 </resources>

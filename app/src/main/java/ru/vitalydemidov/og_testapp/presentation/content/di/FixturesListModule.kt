@@ -10,10 +10,10 @@ import ru.vitalydemidov.og_testapp.data.di.Repository
 import ru.vitalydemidov.og_testapp.domain.FixtureMapper
 import ru.vitalydemidov.og_testapp.domain.FixturesListInteractor
 import ru.vitalydemidov.og_testapp.domain.FixturesListInteractorImpl
-import ru.vitalydemidov.og_testapp.presentation.content.FixturesListAdapter
 import ru.vitalydemidov.og_testapp.presentation.content.FixturesListContract
 import ru.vitalydemidov.og_testapp.presentation.content.FixturesListPresenter
-import ru.vitalydemidov.og_testapp.presentation.content.ResultsListAdapter
+import ru.vitalydemidov.og_testapp.presentation.content.adapter.FixturesFinalListAdapter
+import ru.vitalydemidov.og_testapp.presentation.content.adapter.FixturesUpcomingListAdapter
 import ru.vitalydemidov.og_testapp.util.FixtureType
 
 @Module
@@ -44,8 +44,8 @@ internal class FixturesListModule {
     @PerFragmentScope
     internal fun provideFixturesListAdapter(fixtureType: FixtureType): BaseDelegateAdapter<in Nothing> =
         when (fixtureType) {
-            FixtureType.UPCOMING -> FixturesListAdapter()
-            FixtureType.FINAL -> ResultsListAdapter()
+            FixtureType.UPCOMING -> FixturesUpcomingListAdapter()
+            FixtureType.FINAL -> FixturesFinalListAdapter()
         }
 
 }
