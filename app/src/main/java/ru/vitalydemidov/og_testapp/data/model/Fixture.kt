@@ -8,6 +8,6 @@ data class Fixture(
     val date: String,
     val competitionStage: CompetitionStage,
     val venue: Venue,
-    val state: String,
+    val state: String?,  // почему-то у одного из матчей FixtureUpcoming нет поля state
     val score: Score?
 )

@@ -11,5 +11,6 @@
 
     <dimen name="item_fixture_text_small">14sp</dimen>
     <dimen name="item_fixture_text_medium">16sp</dimen>
+    <dimen name="item_fixture_text_large">20sp</dimen>
 
 </resources>
