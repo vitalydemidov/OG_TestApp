@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.appcommon.adapter.AbstractBaseItemViewHolder
-import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapterJava
+import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseViewTypeDelegate
 import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.viewholder.DateDividerViewHolder
@@ -12,7 +12,7 @@ import ru.vitalydemidov.og_testapp.presentation.content.viewholder.FixtureResult
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureResultVM
 
-class ResultsListAdapter : BaseDelegateAdapterJava<BaseItem<in Nothing>>() {
+class ResultsListAdapter : BaseDelegateAdapter<BaseItem<in Nothing>>() {
 
     init {
         addViewTypeDelegate(

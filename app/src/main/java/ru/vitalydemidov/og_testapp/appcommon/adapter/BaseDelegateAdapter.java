@@ -10,7 +10,7 @@ import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseDelegateAdapterJava<VM extends BaseItem> extends RecyclerView.Adapter<AbstractBaseItemViewHolder<VM>> {
+public abstract class BaseDelegateAdapter<VM extends BaseItem> extends RecyclerView.Adapter<AbstractBaseItemViewHolder<VM>> {
 
     private SparseArray<BaseViewTypeDelegate> delegateMap = new SparseArray<>();
 

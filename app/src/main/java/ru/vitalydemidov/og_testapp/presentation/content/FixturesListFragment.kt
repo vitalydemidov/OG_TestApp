@@ -12,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.appcommon.BaseView
-import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapterJava
+import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
@@ -27,7 +27,7 @@ class FixturesListFragment :
 
     private lateinit var fixtureType: FixtureType
 
-    private lateinit var adapter: BaseDelegateAdapterJava<in Nothing>
+    private lateinit var adapter: BaseDelegateAdapter<in Nothing>
 
     private var fixturesListComponent: FixturesListComponent? = null
         get() {
@@ -38,7 +38,7 @@ class FixturesListFragment :
         }
 
     @Inject
-    internal fun setAdapter(adapter: BaseDelegateAdapterJava<in Nothing>) {
+    internal fun setAdapter(adapter: BaseDelegateAdapter<in Nothing>) {
         this.adapter = adapter
     }
 

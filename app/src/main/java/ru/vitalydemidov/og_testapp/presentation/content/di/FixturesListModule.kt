@@ -4,7 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.vitalydemidov.og_testapp.appcommon.BaseItemMapper
-import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapterJava
+import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.data.FixturesDataSource
 import ru.vitalydemidov.og_testapp.data.di.Repository
 import ru.vitalydemidov.og_testapp.domain.FixtureMapper
@@ -42,7 +42,7 @@ internal class FixturesListModule {
 
     @Provides
     @PerFragmentScope
-    internal fun provideFixturesListAdapter(fixtureType: FixtureType): BaseDelegateAdapterJava<in Nothing> =
+    internal fun provideFixturesListAdapter(fixtureType: FixtureType): BaseDelegateAdapter<in Nothing> =
         when (fixtureType) {
             FixtureType.UPCOMING -> FixturesListAdapter()
             FixtureType.FINAL -> ResultsListAdapter()
