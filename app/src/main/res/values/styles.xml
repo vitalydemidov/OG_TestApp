@@ -49,5 +49,11 @@
         <item name="android:textSize">@dimen/item_fixture_text_small</item>
         <item name="android:layout_marginStart">@dimen/item_fixture_vertical_divider_margin</item>
     </style>
+    
+    <style name="DateDividerLabel">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/item_fixture_text_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

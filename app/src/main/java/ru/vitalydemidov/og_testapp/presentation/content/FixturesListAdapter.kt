@@ -32,7 +32,7 @@ class FixturesListAdapter : BaseDelegateAdapterJava<BaseItem<in Nothing>>() {
         )
 
         addViewTypeDelegate(
-            R.id.divider_item_id,
+            R.id.date_divider_item_id,
             object : BaseViewTypeDelegate<DateDividerVM, AbstractBaseItemViewHolder<DateDividerVM>>() {
 
                 override fun onCreateViewHolder(

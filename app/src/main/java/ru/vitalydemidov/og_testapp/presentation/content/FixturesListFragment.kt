@@ -16,7 +16,6 @@ import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapterJava
 import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
-import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureUpcomingVM
 import ru.vitalydemidov.og_testapp.presentation.host.TabsActivity
 import ru.vitalydemidov.og_testapp.util.FixtureType
 import javax.inject.Inject
@@ -26,8 +25,17 @@ class FixturesListFragment :
     BaseView<FixturesListContract.View, FixturesListContract.Presenter>(),
     FixturesListContract.View {
 
-    private var fixturesListComponent: FixturesListComponent? = null
+    private lateinit var fixtureType: FixtureType
+
     private lateinit var adapter: BaseDelegateAdapterJava<in Nothing>
+
+    private var fixturesListComponent: FixturesListComponent? = null
+        get() {
+            if (field == null) {
+                field = createComponent()
+            }
+            return field
+        }
 
     @Inject
     internal fun setAdapter(adapter: BaseDelegateAdapterJava<in Nothing>) {
@@ -45,7 +53,14 @@ class FixturesListFragment :
             setHasFixedSize(true)
             layoutManager = linearLayoutManager
             addItemDecoration(DividerItemDecoration(context, linearLayoutManager.orientation))
-            recycledViewPool.setMaxRecycledViews(R.id.divider_item_id, 3)    // задать размер пула, когда будут реализованы типы
+            recycledViewPool.setMaxRecycledViews(R.id.date_divider_item_id, DATE_DIVIDER_ITEM_VIEW_POOL)
+            recycledViewPool.setMaxRecycledViews(
+                when (fixtureType) {
+                    FixtureType.UPCOMING -> R.id.fixture_upcoming_item_id
+                    FixtureType.FINAL -> R.id.fixture_final_item_id
+                },
+                FIXTURE_ITEM_VIEW_POOL
+            )
             adapter = this@FixturesListFragment.adapter
         }
 
@@ -60,16 +75,10 @@ class FixturesListFragment :
 
     //region BaseView
     override fun inject() {
-        if (fixturesListComponent == null) {
-            fixturesListComponent = createComponent()
-        }
         fixturesListComponent!!.inject(this)
     }
 
     override fun initPresenter(): FixturesListContract.Presenter {
-        if (fixturesListComponent == null) {
-            fixturesListComponent = createComponent()
-        }
         return fixturesListComponent!!.getFixturesListPresenter()
     }
     //endregion BaseView
@@ -86,7 +95,19 @@ class FixturesListFragment :
     }
     //endregion Contract
 
+    private fun createComponent(): FixturesListComponent {
+         fixtureType = arguments?.getSerializable(ARG_FIXTURE_TYPE) as FixtureType
+
+        return DaggerFixturesListComponent.builder()
+            .fixtureType(fixtureType)
+            .tabsActivityComponent((activity as TabsActivity).activityComponent)
+            .build()
+    }
+
     companion object {
+
+        internal const val DATE_DIVIDER_ITEM_VIEW_POOL = 5
+        internal const val FIXTURE_ITEM_VIEW_POOL = 10
 
         private const val ARG_FIXTURE_TYPE = "fixture_type"
 
@@ -97,16 +118,6 @@ class FixturesListFragment :
             fragment.arguments = args
             return fragment
         }
-    }
-
-    private fun createComponent(): FixturesListComponent {
-        val fixtureType: FixtureType =
-            arguments?.getSerializable(ARG_FIXTURE_TYPE) as FixtureType
-
-        return DaggerFixturesListComponent.builder()
-            .fixtureType(fixtureType)
-            .tabsActivityComponent((activity as TabsActivity).activityComponent)
-            .build()
     }
 
 }

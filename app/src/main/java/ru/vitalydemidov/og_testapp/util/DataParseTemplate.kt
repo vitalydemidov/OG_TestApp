@@ -5,7 +5,7 @@ enum class DataParseTemplate(val format: String) {
     INPUT_DATE_AND_TIME("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
 
     // output formats for rendering
-    DAY_OF_MONTH("dd"),
     DAY_OF_WEEK("EEE"),
-    DATE_AND_TIME("MMM dd, yyyy 'at' HH:mm")
+    DATE_AND_TIME("MMM dd, yyyy 'at' HH:mm"),
+    MONTH_AND_YEAR("MMMM yyyy")
 }

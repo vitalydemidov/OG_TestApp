@@ -13,6 +13,8 @@ class FixtureUpcomingViewHolder(itemView: View) : AbstractBaseItemViewHolder<Fix
     private val homeTeamLabel: TextView = itemView.findViewById(R.id.item_fixture_upcoming_home_team)
     private val awayTeamLabel: TextView = itemView.findViewById(R.id.item_fixture_upcoming_away_team)
     private val dateLabel: TextView = itemView.findViewById(R.id.item_fixture_upcoming_date)
+    private val dayOfMonth: TextView = itemView.findViewById(R.id.item_fixture_upcoming_day_of_month)
+    private val dayOfWeek: TextView = itemView.findViewById(R.id.item_fixture_upcoming_day_of_week)
 
     override fun bindHolder(viewModel: FixtureUpcomingVM) {
         competitionLabel.text = viewModel.competition
@@ -20,5 +22,7 @@ class FixtureUpcomingViewHolder(itemView: View) : AbstractBaseItemViewHolder<Fix
         homeTeamLabel.text = viewModel.homeTeam
         awayTeamLabel.text = viewModel.awayTeam
         dateLabel.text = viewModel.dateAndTime
+        dayOfMonth.text = viewModel.dayOfMonth
+        dayOfWeek.text = viewModel.dayOfWeek
     }
 }

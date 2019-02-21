@@ -12,14 +12,14 @@ import ru.vitalydemidov.og_testapp.appcommon.BaseItemMapper
 import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.data.model.Fixture
 import ru.vitalydemidov.og_testapp.data.model.Score
+import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureResultVM
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureUpcomingVM
 import ru.vitalydemidov.og_testapp.util.DataParseTemplate
 import ru.vitalydemidov.og_testapp.util.FixtureType
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.Calendar.DAY_OF_MONTH
-import java.util.Calendar.DAY_OF_WEEK
+import java.util.Calendar.*
 
 class FixtureMapper(
     context: Context,
@@ -38,21 +38,32 @@ class FixtureMapper(
     @ColorInt
     private val datePostponedColor = ContextCompat.getColor(context, R.color.textColorRed)
 
-    private val dayOfMonthDateFormat = SimpleDateFormat(DataParseTemplate.DAY_OF_MONTH.format, Locale.getDefault())
     private val dayOfWeekDateFormat = SimpleDateFormat(DataParseTemplate.DAY_OF_WEEK.format, Locale.getDefault())
     private val dateAndTimeDateFormat = SimpleDateFormat(DataParseTemplate.DATE_AND_TIME.format, Locale.getDefault())
+    private val monthAndYearDateFormat = SimpleDateFormat(DataParseTemplate.MONTH_AND_YEAR.format, Locale.getDefault())
     private val inputDateAndTimeDateFormat = SimpleDateFormat(DataParseTemplate.INPUT_DATE_AND_TIME.format, Locale.getDefault())
 
     private val calendar = Calendar.getInstance()
+    private val calendarForPreviousItem = Calendar.getInstance()
+    private val calendarForCurrentItem = Calendar.getInstance()
 
+    //region Mapping
     override fun apply(fixture: Fixture): BaseItem<*> {
         return mapByType(fixture)
     }
 
     fun applyToList(fixtures: List<Fixture>): List<BaseItem<in Nothing>> {
         val baseItems = ArrayList<BaseItem<*>>(fixtures.size)
+        var lastMappedFixture: Fixture? = null
+
         for (fixture in fixtures) {
+
+            if (baseItems.isEmpty() || lastMappedFixture?.let { !isSameMonth(it.date, fixture.date) } == true) {
+                baseItems.add(baseItemMapper.toBaseItem(R.id.date_divider_item_id, mapDateDivider(fixture.date)))
+            }
+
             baseItems.add(apply(fixture))
+            lastMappedFixture = fixture
         }
         return baseItems
     }
@@ -73,8 +84,8 @@ class FixtureMapper(
             fixture.homeTeam.name,
             fixture.awayTeam.name,
             fixture.state,
-            prepareDayOfMonth(fixture.date),
-            prepareDayOfWeek(fixture.date)
+            formatDayOfMonth(fixture.date),
+            formatDayOfWeek(fixture.date)
         )
     }
 
@@ -82,7 +93,7 @@ class FixtureMapper(
         return FixtureResultVM(
             fixture.competitionStage.competition.name,
             fixture.venue.name,
-            fixture.date,
+            formatDateAndTime(fixture),
             fixture.homeTeam.name,
             fixture.awayTeam.name,
             prepareHomeScore(fixture.score!!),
@@ -90,22 +101,32 @@ class FixtureMapper(
         )
     }
 
-    private fun prepareDayOfMonth(date: String): String {
+    private fun mapDateDivider(date: String): DateDividerVM {
+        calendar.time = inputDateAndTimeDateFormat.parse(date)
+        return DateDividerVM(monthAndYearDateFormat.format(calendar.time))
+    }
+    //endregion Mapping
+
+    //region Formatting
+    private fun formatDayOfMonth(date: String): String {
         calendar.time = inputDateAndTimeDateFormat.parse(date)
         return calendar.get(DAY_OF_MONTH).toString()
     }
 
-    private fun prepareDayOfWeek(date: String): String {
+    private fun formatDayOfWeek(date: String): String {
         calendar.time = inputDateAndTimeDateFormat.parse(date)
-        return calendar.get(DAY_OF_WEEK).toString()
+        return dayOfWeekDateFormat.format(calendar.time)
+    }
+
+    private fun formatDateAndTime(fixture: Fixture): String {
+        calendar.time = inputDateAndTimeDateFormat.parse(fixture.date)
+        return dateAndTimeDateFormat.format(calendar.time)
     }
 
     private fun prepareDateAndTime(fixture: Fixture): Spannable {
-        val date = inputDateAndTimeDateFormat.parse(fixture.date)
-        calendar.time = date
-        val formattedDate = dateAndTimeDateFormat.format(date)
+        val formattedDateAndTime = formatDateAndTime(fixture)
 
-        val spannableString = SpannableString(formattedDate)
+        val spannableString = SpannableString(formattedDateAndTime)
         spannableString.setSpan(
             ForegroundColorSpan(if (fixture.state.equals("postponed")) datePostponedColor else dateDefaultColor),
             0,
@@ -136,5 +157,16 @@ class FixtureMapper(
         )
         return spannableString
     }
+    //endregion Formatting
+
+    //region Util
+    private fun isSameMonth(previousDate: String, currentDate: String): Boolean {
+        calendarForPreviousItem.time = inputDateAndTimeDateFormat.parse(previousDate)
+        calendarForCurrentItem.time = inputDateAndTimeDateFormat.parse(currentDate)
+
+        return calendarForPreviousItem.get(MONTH) == calendarForCurrentItem.get(MONTH) &&
+                calendarForPreviousItem.get(YEAR) == calendarForCurrentItem.get(YEAR)
+    }
+    //endregion Util
 
 }
