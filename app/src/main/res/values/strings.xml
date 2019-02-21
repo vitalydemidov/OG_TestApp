@@ -7,4 +7,6 @@
 
     <string name="toast_message_loading_error">Ошибка при загрузке</string>
 
+    <string name="postponed_banner_label">Postponed</string>
+
 </resources>

@@ -15,6 +15,7 @@ class FixtureUpcomingViewHolder(itemView: View) : AbstractBaseItemViewHolder<Fix
     private val dateLabel: TextView = itemView.findViewById(R.id.item_fixture_upcoming_date)
     private val dayOfMonth: TextView = itemView.findViewById(R.id.item_fixture_upcoming_day_of_month)
     private val dayOfWeek: TextView = itemView.findViewById(R.id.item_fixture_upcoming_day_of_week)
+    private val postponedBanner: TextView = itemView.findViewById(R.id.item_fixture_upcoming_postponed_banner)
 
     override fun bindHolder(viewModel: FixtureUpcomingVM) {
         competitionLabel.text = viewModel.competition
@@ -24,5 +25,6 @@ class FixtureUpcomingViewHolder(itemView: View) : AbstractBaseItemViewHolder<Fix
         dateLabel.text = viewModel.dateAndTime
         dayOfMonth.text = viewModel.dayOfMonth
         dayOfWeek.text = viewModel.dayOfWeek
+        postponedBanner.visibility = if (viewModel.postponedBannerVisible) View.VISIBLE else View.INVISIBLE
     }
 }

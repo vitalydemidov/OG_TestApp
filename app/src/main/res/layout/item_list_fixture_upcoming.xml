@@ -7,88 +7,43 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/item_fixture_padding">
 
-    <TextView
-        style="@style/ItemFixtureCompetition"
-        android:id="@+id/item_fixture_upcoming_competition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        tools:text="Champions League"/>
+    <include layout="@layout/item_list_fixture_content"/>
 
     <TextView
-        style="@style/ItemFixtureVenue"
-        android:id="@+id/item_fixture_upcoming_venue"
+        style="@style/ItemFixturePostponedBanner"
+        android:id="@+id/item_fixture_upcoming_postponed_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_competition"
-        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_home_team"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        tools:text="Stamford Bridge"/>
+        android:text="@string/postponed_banner_label"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         style="@style/ItemFixtureVerticalDivider"
-        android:id="@+id/item_fixture_vertical_divider_1"
+        android:id="@+id/item_fixture_vertical_divider_2"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintBottom_toBottomOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintStart_toEndOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintEnd_toStartOf="@+id/item_fixture_upcoming_date"/>
+        app:layout_constraintEnd_toStartOf="@+id/item_fixture_upcoming_postponed_banner"
+        app:layout_constraintTop_toTopOf="@id/item_fixture_upcoming_home_team"
+        app:layout_constraintBottom_toBottomOf="@id/item_fixture_upcoming_away_team"/>
 
     <TextView
-        style="@style/ItemFixtureDate"
-        android:id="@+id/item_fixture_upcoming_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintBottom_toBottomOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintStart_toEndOf="@+id/item_fixture_vertical_divider_1"/>
-
-    <TextView
-        style="@style/ItemFixtureTeam"
-        android:id="@+id/item_fixture_upcoming_home_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_venue"
-        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_away_team"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        tools:text="Chelsea"/>
-
-    <TextView
-        style="@style/ItemFixtureTeam"
-        android:id="@+id/item_fixture_upcoming_away_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_home_team"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        tools:text="Fulham"/>
-
-    <TextView
+        style="@style/ItemFixtureDayOfMonth"
         android:id="@+id/item_fixture_upcoming_day_of_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_fixture_upcoming_home_team"
-        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_day_of_week"
+        app:layout_constraintEnd_toEndOf="@+id/item_fixture_upcoming_day_of_week"
+        app:layout_constraintStart_toStartOf="@+id/item_fixture_upcoming_day_of_week"
+        app:layout_constraintBottom_toTopOf="@id/item_fixture_upcoming_away_team"
         tools:text="12"/>
 
     <TextView
+        style="@style/ItemFixtureDayOfWeek"
         android:id="@+id/item_fixture_upcoming_day_of_week"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_day_of_month"
-        app:layout_constraintBottom_toBottomOf="@+id/item_fixture_upcoming_away_team"
+        app:layout_constraintStart_toEndOf="@+id/item_fixture_vertical_divider_2"
+        app:layout_constraintEnd_toEndOf="@+id/item_fixture_upcoming_postponed_banner"
+        app:layout_constraintTop_toBottomOf="@id/item_fixture_upcoming_home_team"
         tools:text="SUN"/>
 
 </android.support.constraint.ConstraintLayout>

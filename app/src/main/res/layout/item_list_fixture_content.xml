@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/item_list_fixture_upcoming">
+
+    <TextView
+        style="@style/ItemFixtureCompetition"
+        android:id="@+id/item_fixture_upcoming_competition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="Champions League"/>
+
+    <TextView
+        style="@style/ItemFixtureVenue"
+        android:id="@+id/item_fixture_upcoming_venue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_competition"
+        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_home_team"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="Stamford Bridge"/>
+
+    <View
+        style="@style/ItemFixtureVerticalDivider"
+        android:id="@+id/item_fixture_vertical_divider_1"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintBottom_toBottomOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintStart_toEndOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintEnd_toStartOf="@+id/item_fixture_upcoming_date"/>
+
+    <TextView
+        style="@style/ItemFixtureDate"
+        android:id="@+id/item_fixture_upcoming_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintBottom_toBottomOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintStart_toEndOf="@+id/item_fixture_vertical_divider_1"
+        tools:text="Sep 20, 2019 at 16:00"/>
+
+    <TextView
+        style="@style/ItemFixtureTeam"
+        android:id="@+id/item_fixture_upcoming_home_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_venue"
+        app:layout_constraintBottom_toTopOf="@+id/item_fixture_upcoming_away_team"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="Chelsea"/>
+
+    <TextView
+        style="@style/ItemFixtureTeam"
+        android:id="@+id/item_fixture_upcoming_away_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/item_fixture_upcoming_home_team"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="Fulham"/>
+
+</merge>

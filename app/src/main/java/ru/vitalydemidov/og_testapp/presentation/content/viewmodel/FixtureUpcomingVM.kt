@@ -8,7 +8,7 @@ class FixtureUpcomingVM(
     val dateAndTime: Spannable,
     val homeTeam: String,
     val awayTeam: String,
-    val state: String?,
+    val postponedBannerVisible: Boolean,
     val dayOfMonth: String,
     val dayOfWeek: String
 )

@@ -8,7 +8,7 @@ import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseViewTypeDelegate
 import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.viewholder.DateDividerViewHolder
-import ru.vitalydemidov.og_testapp.presentation.content.viewholder.FixtureResultViewHolder
+import ru.vitalydemidov.og_testapp.presentation.content.viewholder.FixtureFinalViewHolder
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureResultVM
 
@@ -20,8 +20,8 @@ class FixturesFinalListAdapter : BaseDelegateAdapter<BaseItem<in Nothing>>() {
             object : BaseViewTypeDelegate<FixtureResultVM, AbstractBaseItemViewHolder<FixtureResultVM>>() {
 
                 override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractBaseItemViewHolder<FixtureResultVM> =
-                    FixtureResultViewHolder(
-                        LayoutInflater.from(parent.context).inflate(R.layout.item_list_fixture_upcoming, parent, false)
+                    FixtureFinalViewHolder(
+                        LayoutInflater.from(parent.context).inflate(R.layout.item_list_fixture_final, parent, false)
                     )
             }
         )
