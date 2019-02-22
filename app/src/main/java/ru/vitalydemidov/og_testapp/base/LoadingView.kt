@@ -1,4 +1,4 @@
-package ru.vitalydemidov.og_testapp.appcommon
+package ru.vitalydemidov.og_testapp.base
 
 interface LoadingView {
 

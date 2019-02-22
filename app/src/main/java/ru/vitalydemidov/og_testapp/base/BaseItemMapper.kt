@@ -1,6 +1,6 @@
-package ru.vitalydemidov.og_testapp.appcommon
+package ru.vitalydemidov.og_testapp.base
 
-import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
+import ru.vitalydemidov.og_testapp.base.model.BaseItem
 
 class BaseItemMapper {
 

@@ -3,7 +3,7 @@ package ru.vitalydemidov.og_testapp.presentation.content.viewholder
 import android.view.View
 import android.widget.TextView
 import ru.vitalydemidov.og_testapp.R
-import ru.vitalydemidov.og_testapp.appcommon.adapter.AbstractBaseItemViewHolder
+import ru.vitalydemidov.og_testapp.base.adapter.AbstractBaseItemViewHolder
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
 
 class DateDividerViewHolder(itemView: View) : AbstractBaseItemViewHolder<DateDividerVM>(itemView) {

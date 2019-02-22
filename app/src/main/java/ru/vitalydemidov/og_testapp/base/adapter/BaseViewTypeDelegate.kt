@@ -1,7 +1,7 @@
-package ru.vitalydemidov.og_testapp.appcommon.adapter
+package ru.vitalydemidov.og_testapp.base.adapter
 
 import android.view.ViewGroup
-import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
+import ru.vitalydemidov.og_testapp.base.model.BaseItem
 
 abstract class BaseViewTypeDelegate<VM, VH : AbstractBaseItemViewHolder<VM>> {
 

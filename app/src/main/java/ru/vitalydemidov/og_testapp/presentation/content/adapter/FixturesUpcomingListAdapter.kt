@@ -4,10 +4,10 @@ import android.support.annotation.UiThread
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ru.vitalydemidov.og_testapp.R
-import ru.vitalydemidov.og_testapp.appcommon.adapter.AbstractBaseItemViewHolder
-import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseDelegateAdapter
-import ru.vitalydemidov.og_testapp.appcommon.adapter.BaseViewTypeDelegate
-import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
+import ru.vitalydemidov.og_testapp.base.adapter.AbstractBaseItemViewHolder
+import ru.vitalydemidov.og_testapp.base.adapter.BaseDelegateAdapter
+import ru.vitalydemidov.og_testapp.base.adapter.BaseViewTypeDelegate
+import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.presentation.content.viewholder.DateDividerViewHolder
 import ru.vitalydemidov.og_testapp.presentation.content.viewholder.FixtureUpcomingViewHolder
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM

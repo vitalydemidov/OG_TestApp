@@ -1,11 +1,11 @@
-package ru.vitalydemidov.og_testapp.appcommon.adapter;
+package ru.vitalydemidov.og_testapp.base.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.ViewGroup;
-import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem;
+import ru.vitalydemidov.og_testapp.base.model.BaseItem;
 
 import java.util.ArrayList;
 import java.util.List;

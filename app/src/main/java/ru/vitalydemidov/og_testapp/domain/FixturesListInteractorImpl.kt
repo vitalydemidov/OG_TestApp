@@ -3,7 +3,7 @@ package ru.vitalydemidov.og_testapp.domain
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import ru.vitalydemidov.og_testapp.appcommon.model.BaseItem
+import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.data.FixturesDataSource
 import ru.vitalydemidov.og_testapp.util.FixtureType
 
