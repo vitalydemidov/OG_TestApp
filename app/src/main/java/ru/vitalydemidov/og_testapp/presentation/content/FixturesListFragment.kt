@@ -12,12 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import ru.vitalydemidov.og_testapp.R
-import ru.vitalydemidov.og_testapp.base.view.BaseView
 import ru.vitalydemidov.og_testapp.base.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
+import ru.vitalydemidov.og_testapp.base.view.BaseView
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
-import ru.vitalydemidov.og_testapp.presentation.host.TabsActivity
+import ru.vitalydemidov.og_testapp.presentation.host.di.TabsActivityComponentProvider
 import ru.vitalydemidov.og_testapp.util.FixtureType
 import javax.inject.Inject
 
@@ -99,7 +99,7 @@ class FixturesListFragment :
 
         return DaggerFixturesListComponent.builder()
             .fixtureType(fixtureType)
-            .tabsActivityComponent((activity as TabsActivity).activityComponent)
+            .tabsActivityComponent((activity as TabsActivityComponentProvider).provideTabsActivityComponent())
             .build()
     }
 

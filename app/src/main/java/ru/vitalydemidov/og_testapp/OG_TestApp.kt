@@ -6,12 +6,13 @@ import ru.vitalydemidov.og_testapp.data.di.FixturesDataSourceComponent
 import ru.vitalydemidov.og_testapp.data.di.FixturesDataSourceModule
 import ru.vitalydemidov.og_testapp.data.remote.di.ApiModule
 import ru.vitalydemidov.og_testapp.di.AppComponent
+import ru.vitalydemidov.og_testapp.di.AppComponentProvider
 import ru.vitalydemidov.og_testapp.di.AppModule
 import ru.vitalydemidov.og_testapp.di.DaggerAppComponent
 
-class OG_TestApp : Application() {
+class OG_TestApp : Application(), AppComponentProvider {
 
-    internal val appComponent = buildAppComponent()
+    private val appComponent = buildAppComponent()
 
     private fun buildAppComponent(): AppComponent {
         val fixtureDataSourceComponent: FixturesDataSourceComponent =
@@ -25,5 +26,9 @@ class OG_TestApp : Application() {
             .fixturesDataSourceComponent(fixtureDataSourceComponent)
             .build()
     }
+
+    //region AppComponentProvider interface implementation
+    override fun provideAppComponent(): AppComponent = appComponent
+    //endregion AppComponentProvider interface implementation
 
 }
