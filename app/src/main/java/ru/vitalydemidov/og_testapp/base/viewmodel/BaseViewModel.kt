@@ -1,6 +1,7 @@
-package ru.vitalydemidov.og_testapp.base
+package ru.vitalydemidov.og_testapp.base.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import ru.vitalydemidov.og_testapp.base.contract.BaseContract
 
 class BaseViewModel<
     VIEW : BaseContract.View,

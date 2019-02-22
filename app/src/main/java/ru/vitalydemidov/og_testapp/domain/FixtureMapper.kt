@@ -8,7 +8,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import io.reactivex.functions.Function
 import ru.vitalydemidov.og_testapp.R
-import ru.vitalydemidov.og_testapp.base.BaseItemMapper
+import ru.vitalydemidov.og_testapp.base.mapper.BaseItemMapper
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.data.model.Fixture
 import ru.vitalydemidov.og_testapp.data.model.Score

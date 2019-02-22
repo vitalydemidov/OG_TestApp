@@ -1,6 +1,6 @@
 package ru.vitalydemidov.og_testapp.presentation.content
 
-import ru.vitalydemidov.og_testapp.base.BaseContract
+import ru.vitalydemidov.og_testapp.base.contract.BaseContract
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.util.FixtureType
 

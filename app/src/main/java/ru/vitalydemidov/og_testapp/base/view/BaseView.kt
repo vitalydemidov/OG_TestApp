@@ -1,9 +1,11 @@
-package ru.vitalydemidov.og_testapp.base
+package ru.vitalydemidov.og_testapp.base.view
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
+import ru.vitalydemidov.og_testapp.base.contract.BaseContract
+import ru.vitalydemidov.og_testapp.base.viewmodel.BaseViewModel
 
 abstract class BaseView<
     VIEW : BaseContract.View,

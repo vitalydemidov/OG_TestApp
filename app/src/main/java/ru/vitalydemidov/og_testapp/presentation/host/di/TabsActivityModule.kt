@@ -4,7 +4,7 @@ import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import dagger.Module
 import dagger.Provides
-import ru.vitalydemidov.og_testapp.base.BaseItemMapper
+import ru.vitalydemidov.og_testapp.base.mapper.BaseItemMapper
 import ru.vitalydemidov.og_testapp.presentation.host.TabsPagerAdapter
 
 @Module
@@ -18,6 +18,7 @@ class TabsActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     @PerActivityScope
-    internal fun provideBaseItemMapper(): BaseItemMapper = BaseItemMapper()
+    internal fun provideBaseItemMapper(): BaseItemMapper =
+        BaseItemMapper()
 
 }

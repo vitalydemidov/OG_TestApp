@@ -1,8 +1,10 @@
-package ru.vitalydemidov.og_testapp.base
+package ru.vitalydemidov.og_testapp.base.presenter
 
 import io.reactivex.disposables.SerialDisposable
+import ru.vitalydemidov.og_testapp.base.contract.BaseContract
 
-abstract class BasePresenter<VIEW : BaseContract.View> : BaseContract.Presenter<VIEW> {
+abstract class BasePresenter<VIEW : BaseContract.View> :
+    BaseContract.Presenter<VIEW> {
 
     protected var view: VIEW? = null
     protected val disposable: SerialDisposable = SerialDisposable()

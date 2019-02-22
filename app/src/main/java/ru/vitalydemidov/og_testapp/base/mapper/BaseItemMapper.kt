@@ -1,4 +1,4 @@
-package ru.vitalydemidov.og_testapp.base
+package ru.vitalydemidov.og_testapp.base.mapper
 
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
 

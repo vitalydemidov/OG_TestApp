@@ -3,7 +3,7 @@ package ru.vitalydemidov.og_testapp.presentation.content.di
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import ru.vitalydemidov.og_testapp.base.BaseItemMapper
+import ru.vitalydemidov.og_testapp.base.mapper.BaseItemMapper
 import ru.vitalydemidov.og_testapp.base.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.data.FixturesDataSource
 import ru.vitalydemidov.og_testapp.data.di.Repository
