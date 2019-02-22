@@ -2,6 +2,7 @@ package ru.vitalydemidov.og_testapp.presentation.content
 
 import android.os.Bundle
 import android.support.annotation.UiThread
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -26,7 +27,7 @@ class FixturesListFragment :
     FixturesListContract.View {
 
     private lateinit var fixtureType: FixtureType
-
+    private lateinit var fixturesSwipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: BaseDelegateAdapter<in Nothing>
 
     private var fixturesListComponent: FixturesListComponent? = null
@@ -46,6 +47,69 @@ class FixturesListFragment :
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_fixtures_list, container, false)
 
+        initFixturesSwipeRefreshLayout(rootView)
+        initFixturesList(rootView)
+
+        return rootView
+    }
+
+    override fun onDestroyView() {
+        fixturesSwipeRefreshLayout.setOnRefreshListener(null)
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        fixturesListComponent = null
+        super.onDestroy()
+    }
+    //endregion Lifecycle
+
+    //region BaseView
+    override fun inject() {
+        fixturesListComponent!!.inject(this)
+    }
+
+    override fun initPresenter(): FixturesListContract.Presenter {
+        return fixturesListComponent!!.getFixturesListPresenter()
+    }
+
+    override fun showLoadingProgress() {
+        fixturesSwipeRefreshLayout.isRefreshing = true
+    }
+
+    override fun hideLoadingProgress() {
+        fixturesSwipeRefreshLayout.isRefreshing = false
+    }
+
+    override fun showLoadingError(error: Throwable) {
+        Toast.makeText(context, "${getString(R.string.toast_message_loading_error)}: ${error.message}", Toast.LENGTH_SHORT).show()
+        Log.d("FixturesListFragment", "Error: $error")
+    }
+    //endregion BaseView
+
+    //region Contract
+    override fun showFixtureList(fixtures: List<BaseItem<in Nothing>>) {
+        Log.d("FixturesListFragment", "fixtures: $fixtures")
+        adapter.setDataList(fixtures)
+    }
+    //endregion Contract
+
+    private fun createComponent(): FixturesListComponent {
+         fixtureType = arguments?.getSerializable(ARG_FIXTURE_TYPE) as FixtureType
+
+        return DaggerFixturesListComponent.builder()
+            .fixtureType(fixtureType)
+            .tabsActivityComponent((activity as TabsActivity).activityComponent)
+            .build()
+    }
+
+    private fun initFixturesSwipeRefreshLayout(rootView: View) {
+        fixturesSwipeRefreshLayout = rootView.findViewById(R.id.fixtures_swipe_refresh_layout)
+        fixturesSwipeRefreshLayout.setOnRefreshListener { presenter.loadFixtures(fixtureType) }
+        fixturesSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent)
+    }
+
+    private fun initFixturesList(rootView: View) {
         val fixturesList: RecyclerView = rootView.findViewById(R.id.fixtures_list)
         val linearLayoutManager = LinearLayoutManager(context)
 
@@ -63,45 +127,6 @@ class FixturesListFragment :
             )
             adapter = this@FixturesListFragment.adapter
         }
-
-        return rootView
-    }
-
-    override fun onDestroy() {
-        fixturesListComponent = null
-        super.onDestroy()
-    }
-    //endregion Lifecycle
-
-    //region BaseView
-    override fun inject() {
-        fixturesListComponent!!.inject(this)
-    }
-
-    override fun initPresenter(): FixturesListContract.Presenter {
-        return fixturesListComponent!!.getFixturesListPresenter()
-    }
-    //endregion BaseView
-
-    //region Contract
-    override fun showFixtureList(fixtures: List<BaseItem<in Nothing>>) {
-        Log.d("FixturesListFragment", "fixtures: $fixtures")
-        adapter.setDataList(fixtures)
-    }
-
-    override fun showError(error: Throwable) {
-        Toast.makeText(context, R.string.toast_message_loading_error, Toast.LENGTH_SHORT).show()
-        Log.d("FixturesListFragment", "Error: $error")
-    }
-    //endregion Contract
-
-    private fun createComponent(): FixturesListComponent {
-         fixtureType = arguments?.getSerializable(ARG_FIXTURE_TYPE) as FixtureType
-
-        return DaggerFixturesListComponent.builder()
-            .fixtureType(fixtureType)
-            .tabsActivityComponent((activity as TabsActivity).activityComponent)
-            .build()
     }
 
     companion object {
