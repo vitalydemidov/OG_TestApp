@@ -4,7 +4,7 @@ import android.support.annotation.NonNull
 
 interface BaseContract {
 
-    interface View
+    interface View : LoadingView
 
     interface Presenter<VIEW : BaseContract.View> {
 

@@ -23,12 +23,14 @@ internal class FixturesListPresenter(
     }
 
     override fun loadFixtures(type: FixtureType) {
+        view?.showLoadingProgress()
+
         disposable.set(
             fixturesListInteractor.getFixturesList(type)
-//                .map {  }     // маппинг данных на ui потоке?
+                .doOnTerminate { view?.hideLoadingProgress() }
                 .subscribe(
                     { fixtures -> processDataListResult(fixtures) },
-                    { error -> view?.showError(error) }
+                    { error -> view?.showLoadingError(error) }
                 )
         )
     }

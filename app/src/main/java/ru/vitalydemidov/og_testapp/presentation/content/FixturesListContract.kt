@@ -10,8 +10,6 @@ interface FixturesListContract {
 
         fun showFixtureList(fixtures: List<BaseItem<in Nothing>>)
 
-        fun showError(error: Throwable)
-
     }
 
     interface Presenter : BaseContract.Presenter<View> {
