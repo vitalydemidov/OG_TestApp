@@ -2,6 +2,7 @@ package ru.vitalydemidov.og_testapp.presentation.host
 
 import android.os.Bundle
 import android.support.annotation.UiThread
+import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import ru.vitalydemidov.og_testapp.OG_TestApp
@@ -22,7 +23,7 @@ class TabsActivity : AppCompatActivity() {
         activityComponent = buildActivityComponent()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tabs)
-
+        setSupportActionBar(findViewById(R.id.activity_tabs_toolbar))
         viewPager = findViewById(R.id.view_pager)
 
         activityComponent.inject(this)
@@ -32,6 +33,9 @@ class TabsActivity : AppCompatActivity() {
     internal fun setAdapter(adapter: TabsPagerAdapter) {
         tabsPagerAdapter = adapter
         viewPager.adapter = tabsPagerAdapter
+
+        val tabLayout: TabLayout = findViewById(R.id.activity_tabs_tab_layout)
+        tabLayout.setupWithViewPager(viewPager)
     }
 
     private fun buildActivityComponent(): TabsActivityComponent {
