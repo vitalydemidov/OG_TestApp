@@ -1,5 +1,6 @@
 package ru.vitalydemidov.og_testapp.presentation.content.adapter
 
+import android.support.annotation.UiThread
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import ru.vitalydemidov.og_testapp.R
@@ -12,6 +13,7 @@ import ru.vitalydemidov.og_testapp.presentation.content.viewholder.FixtureFinalV
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.FixtureResultVM
 
+@UiThread
 class FixturesFinalListAdapter : BaseDelegateAdapter<BaseItem<in Nothing>>() {
 
     init {
