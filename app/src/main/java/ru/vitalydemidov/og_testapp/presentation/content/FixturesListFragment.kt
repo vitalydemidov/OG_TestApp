@@ -15,6 +15,7 @@ import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.base.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.base.view.BaseView
+import ru.vitalydemidov.og_testapp.data.model.Competition
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.host.di.TabsActivityComponentProvider
@@ -92,6 +93,10 @@ class FixturesListFragment :
         Log.d("FixturesListFragment", "fixtures: $fixtures")
         adapter.setDataList(fixtures)
     }
+
+    override fun showAvailableSortingByCompetition(competitions: List<Competition>) {
+
+    }
     //endregion Contract
 
     private fun createComponent(): FixturesListComponent {
@@ -105,7 +110,7 @@ class FixturesListFragment :
 
     private fun initFixturesSwipeRefreshLayout(rootView: View) {
         fixturesSwipeRefreshLayout = rootView.findViewById(R.id.fixtures_swipe_refresh_layout)
-        fixturesSwipeRefreshLayout.setOnRefreshListener { presenter.loadFixtures(fixtureType) }
+        fixturesSwipeRefreshLayout.setOnRefreshListener { presenter.loadFixtures(forceRemote = true) }
         fixturesSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent)
     }
 

@@ -10,6 +10,7 @@ import io.reactivex.functions.Function
 import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.base.mapper.BaseItemMapper
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
+import ru.vitalydemidov.og_testapp.data.model.Competition
 import ru.vitalydemidov.og_testapp.data.model.Fixture
 import ru.vitalydemidov.og_testapp.data.model.Score
 import ru.vitalydemidov.og_testapp.presentation.content.viewmodel.DateDividerVM
@@ -20,6 +21,7 @@ import ru.vitalydemidov.og_testapp.util.FixtureType
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Calendar.*
+import kotlin.collections.HashSet
 
 class FixtureMapper(
     context: Context,
@@ -52,11 +54,13 @@ class FixtureMapper(
         return mapByType(fixture)
     }
 
-    fun applyToList(fixtures: List<Fixture>): List<BaseItem<in Nothing>> {
+    fun applyToList(fixtures: List<Fixture>): FixturesResult {
         val baseItems = ArrayList<BaseItem<*>>(fixtures.size)
+        val competitions = HashSet<Competition>()
         var lastMappedFixture: Fixture? = null
 
         for (fixture in fixtures) {
+            competitions.add(fixture.competitionStage.competition)
 
             if (baseItems.isEmpty() || lastMappedFixture?.let { !isSameMonth(it.date, fixture.date) } == true) {
                 baseItems.add(baseItemMapper.toBaseItem(R.id.date_divider_item_id, mapDateDivider(fixture.date)))
@@ -65,13 +69,13 @@ class FixtureMapper(
             baseItems.add(apply(fixture))
             lastMappedFixture = fixture
         }
-        return baseItems
+        return FixturesResult(baseItems, competitions.toList())
     }
 
     private fun mapByType(fixture: Fixture): BaseItem<*> {
         return when (fixture.type) {
-            FixtureType.UPCOMING.type -> baseItemMapper.toBaseItem(R.id.fixture_upcoming_item_id, mapFixtureUpcoming(fixture))
-            FixtureType.FINAL.type -> baseItemMapper.toBaseItem(R.id.fixture_final_item_id, mapFixtureFinal(fixture))
+            FixtureType.UPCOMING.typeStr -> baseItemMapper.toBaseItem(R.id.fixture_upcoming_item_id, mapFixtureUpcoming(fixture))
+            FixtureType.FINAL.typeStr -> baseItemMapper.toBaseItem(R.id.fixture_final_item_id, mapFixtureFinal(fixture))
             else -> throw IllegalArgumentException("Unknown fixture type!")
         }
     }
