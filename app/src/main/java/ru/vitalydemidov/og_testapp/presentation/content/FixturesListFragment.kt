@@ -80,7 +80,6 @@ class FixturesListFragment :
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (!firstSelectionCallback) {
-                    Toast.makeText(context, "Selected: position=$position; id=$id", Toast.LENGTH_SHORT).show()
                     presenter.onCompetitionForSortingSelected(competitions[position])
                 }
                 firstSelectionCallback = false
