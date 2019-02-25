@@ -105,7 +105,7 @@ class FixturesListFragment :
 
     private fun initFixturesSwipeRefreshLayout(rootView: View) {
         fixturesSwipeRefreshLayout = rootView.findViewById(R.id.fixtures_swipe_refresh_layout)
-        fixturesSwipeRefreshLayout.setOnRefreshListener { presenter.loadFixtures(fixtureType) }
+        fixturesSwipeRefreshLayout.setOnRefreshListener { presenter.loadFixtures(forceRemote = true) }
         fixturesSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent)
     }
 

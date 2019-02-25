@@ -5,16 +5,18 @@ import dagger.Provides
 import ru.vitalydemidov.og_testapp.data.FixturesDataSource
 import ru.vitalydemidov.og_testapp.data.FixturesRepository
 import ru.vitalydemidov.og_testapp.data.local.FixturesLocalDataSource
-import ru.vitalydemidov.og_testapp.data.local.Local
-import ru.vitalydemidov.og_testapp.data.remote.FixturesApi
+import ru.vitalydemidov.og_testapp.data.local.di.Local
+import ru.vitalydemidov.og_testapp.data.local.db.FixtureDatabase
+import ru.vitalydemidov.og_testapp.data.remote.api.FixturesApi
 import ru.vitalydemidov.og_testapp.data.remote.FixturesRemoteDataSource
 import ru.vitalydemidov.og_testapp.data.remote.di.Remote
+import ru.vitalydemidov.og_testapp.di.PerAppScope
 
 @Module
 internal class FixturesDataSourceModule {
 
     @Provides
-    @FixturesDataSourceScope
+    @PerAppScope
     @Repository
     internal fun provideFixtureRepository(
         @Local localDataSource: FixturesDataSource,
@@ -23,15 +25,15 @@ internal class FixturesDataSourceModule {
         FixturesRepository(localDataSource, remoteDataSource)
 
     @Provides
-    @FixturesDataSourceScope
+    @PerAppScope
     @Remote
     internal fun provideFixtureRemoteDataSource(fixturesApi: FixturesApi): FixturesDataSource =
         FixturesRemoteDataSource(fixturesApi)
 
     @Provides
-    @FixturesDataSourceScope
+    @PerAppScope
     @Local
-    internal fun provideFixtureLocalDataSource(): FixturesDataSource =
-        FixturesLocalDataSource()
+    internal fun provideFixtureLocalDataSource(fixturesDatabase: FixtureDatabase): FixturesDataSource =
+        FixturesLocalDataSource(fixturesDatabase)
 
 }

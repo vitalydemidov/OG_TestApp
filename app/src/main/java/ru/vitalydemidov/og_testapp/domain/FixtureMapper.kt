@@ -70,8 +70,8 @@ class FixtureMapper(
 
     private fun mapByType(fixture: Fixture): BaseItem<*> {
         return when (fixture.type) {
-            FixtureType.UPCOMING.type -> baseItemMapper.toBaseItem(R.id.fixture_upcoming_item_id, mapFixtureUpcoming(fixture))
-            FixtureType.FINAL.type -> baseItemMapper.toBaseItem(R.id.fixture_final_item_id, mapFixtureFinal(fixture))
+            FixtureType.UPCOMING.typeStr -> baseItemMapper.toBaseItem(R.id.fixture_upcoming_item_id, mapFixtureUpcoming(fixture))
+            FixtureType.FINAL.typeStr -> baseItemMapper.toBaseItem(R.id.fixture_final_item_id, mapFixtureFinal(fixture))
             else -> throw IllegalArgumentException("Unknown fixture type!")
         }
     }

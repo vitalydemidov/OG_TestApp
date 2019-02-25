@@ -1,4 +1,4 @@
-package ru.vitalydemidov.og_testapp.data.local
+package ru.vitalydemidov.og_testapp.data.local.di
 
 import javax.inject.Qualifier
 
