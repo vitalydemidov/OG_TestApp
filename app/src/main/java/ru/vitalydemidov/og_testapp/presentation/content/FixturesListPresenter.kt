@@ -1,8 +1,7 @@
 package ru.vitalydemidov.og_testapp.presentation.content
 
-import ru.vitalydemidov.og_testapp.base.presenter.BasePresenter
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
-import ru.vitalydemidov.og_testapp.data.model.Competition
+import ru.vitalydemidov.og_testapp.base.presenter.BasePresenter
 import ru.vitalydemidov.og_testapp.domain.FixturesFilter
 import ru.vitalydemidov.og_testapp.domain.FixturesListInteractor
 import ru.vitalydemidov.og_testapp.util.FixtureType
@@ -34,7 +33,7 @@ internal class FixturesListPresenter(
             fixturesListInteractor.getFixturesList(filter)
                 .doOnTerminate { view?.hideLoadingProgress() }
                 .subscribe(
-                    { fixtures -> processDataListResult(fixtures.items) },
+                    { fixtures -> processDataListResult(fixtures) },
                     { error -> view?.showLoadingError(error) }
                 )
         )
@@ -42,10 +41,7 @@ internal class FixturesListPresenter(
 
     private fun processDataListResult(data: List<BaseItem<in Nothing>>) {
         dataList = data
-
-        view?.run {
-            showFixtureList(dataList)
-        }
+        view?.showFixtureList(dataList)
     }
 
 }
