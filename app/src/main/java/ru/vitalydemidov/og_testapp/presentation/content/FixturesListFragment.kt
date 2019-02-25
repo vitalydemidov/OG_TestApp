@@ -3,18 +3,19 @@ package ru.vitalydemidov.og_testapp.presentation.content
 import android.os.Bundle
 import android.support.annotation.UiThread
 import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.AppCompatSpinner
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import ru.vitalydemidov.og_testapp.R
 import ru.vitalydemidov.og_testapp.base.adapter.BaseDelegateAdapter
 import ru.vitalydemidov.og_testapp.base.model.BaseItem
 import ru.vitalydemidov.og_testapp.base.view.BaseView
+import ru.vitalydemidov.og_testapp.data.model.Competition
 import ru.vitalydemidov.og_testapp.presentation.content.di.DaggerFixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.content.di.FixturesListComponent
 import ru.vitalydemidov.og_testapp.presentation.host.di.TabsActivityComponentProvider
@@ -30,6 +31,10 @@ class FixturesListFragment :
     private lateinit var fixturesSwipeRefreshLayout: SwipeRefreshLayout
     private lateinit var adapter: BaseDelegateAdapter<in Nothing>
 
+    private var spinner: AppCompatSpinner? = null
+    private var competitions: List<Competition> = arrayListOf()
+    private var selectedCompetition: Competition? = null
+
     private var fixturesListComponent: FixturesListComponent? = null
         get() {
             if (field == null) {
@@ -44,6 +49,45 @@ class FixturesListFragment :
     }
 
     //region Lifecycle
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_overflow, menu)
+
+        val item = menu?.findItem(R.id.toolbar_spinner)
+        spinner = item?.actionView as AppCompatSpinner
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        super.onPrepareOptionsMenu(menu)
+
+        val spinnerAdapter: ArrayAdapter<Competition> = ArrayAdapter(context, android.R.layout.simple_spinner_item, competitions)
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner?.adapter = spinnerAdapter
+
+        selectedCompetition?.let {
+            spinner?.setSelection(competitions.indexOf(it))
+        }
+
+        var firstSelectionCallback = true
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (!firstSelectionCallback) {
+                    Toast.makeText(context, "Selected: position=$position; id=$id", Toast.LENGTH_SHORT).show()
+                    presenter.onCompetitionForSortingSelected(competitions[position])
+                }
+                firstSelectionCallback = false
+            }
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_fixtures_list, container, false)
 
@@ -55,6 +99,7 @@ class FixturesListFragment :
 
     override fun onDestroyView() {
         fixturesSwipeRefreshLayout.setOnRefreshListener(null)
+        spinner?.onItemSelectedListener = null
         super.onDestroyView()
     }
 
@@ -83,14 +128,18 @@ class FixturesListFragment :
 
     override fun showLoadingError(error: Throwable) {
         Toast.makeText(context, "${getString(R.string.toast_message_loading_error)}: ${error.message}", Toast.LENGTH_SHORT).show()
-        Log.d("FixturesListFragment", "Error: $error")
     }
     //endregion BaseView
 
     //region Contract
     override fun showFixtureList(fixtures: List<BaseItem<in Nothing>>) {
-        Log.d("FixturesListFragment", "fixtures: $fixtures")
         adapter.setDataList(fixtures)
+    }
+
+    override fun showAvailableSortingByCompetition(competitions: List<Competition>, selected: Competition?) {
+        this.competitions = competitions
+        this.selectedCompetition = selected
+        activity?.invalidateOptionsMenu()
     }
     //endregion Contract
 
