@@ -2,13 +2,12 @@ package ru.vitalydemidov.og_testapp.data.model
 
 import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import ru.vitalydemidov.og_testapp.data.local.db.FixtureDatabase.Companion.FIXTURES_TABLE_NAME
 
-@Entity(
-    tableName = FIXTURES_TABLE_NAME,
-    primaryKeys = ["id"]
-)
+@Entity(tableName = FIXTURES_TABLE_NAME)
 data class Fixture(
+    @PrimaryKey
     val id: Long,
     val type: String,
     @Embedded(prefix = "home_team_")

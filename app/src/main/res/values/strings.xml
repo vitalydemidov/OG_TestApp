@@ -9,4 +9,6 @@
 
     <string name="postponed_banner_label">Postponed</string>
 
+    <string name="toolbar_spinner_title">Toolbar spinner</string>
+
 </resources>
